@@ -10,7 +10,12 @@ A collection of **AI**, **Machine Learning** and **Deep Learning** projects impl
 - **Linear Regression from Scratch**
   - Model: Custom Linear Regression
   - Libraries: `Python`
-  
+
+- **MLOps-LLMOps Project**
+  - Model: Ollama phi3:mini
+  - Libraries: `Python`, `FastAPI`, `langchain`
+  - Tools: `Prometheus`, `Grafana`, `ChromaDB`, `SQLite`, `Ollama`, `Docker`
+
 - **Pneumonia Detection from Chest X-Rays using CNN**
   - Model: Custom CNN
   - Libraries: `PyTorch`, `scikit-learn`
@@ -33,4 +38,5 @@ A collection of **AI**, **Machine Learning** and **Deep Learning** projects impl
 
 - **Weather Classification Monitoring (Prometheus & Grafana)**
   - Model: Fully Connected Neural Network
-  - Libraries: `PyTorch`, `scikit-learn`, `Prometheus`, `Grafana`
+  - Libraries: `PyTorch`, `scikit-learn`
+  - Tools: `Prometheus`, `Grafana`
