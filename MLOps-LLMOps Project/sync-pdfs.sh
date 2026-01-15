@@ -22,7 +22,11 @@ while true; do
 
     if [ $LOCAL != $REMOTE ]; then
         # Check for PDF changes in specific folder
-        PDF_CHANGES=$(git diff --name-only $LOCAL $REMOTE -- "$PDF_FOLDER/*.pdf")
+        echo "DEBUG - All changed files:"
+
+        PDF_CHANGES=$(git diff --name-only $LOCAL $REMOTE | grep "^$PDF_FOLDER/.*\.pdf$")
+
+        echo "$PDF_CHANGES"
 
         if [ -n "$PDF_CHANGES" ]; then
             echo "📄 PDF changes detected:"
@@ -32,9 +36,8 @@ while true; do
             git pull origin $BRANCH
 
             echo "🚀 Restarting ingestion..."
-            cd "MLOps-LLMOps Project"
-            docker-compose restart ingestion
-            cd ..
+            
+            docker-compose up -d --no-deps --build ingestion
 
             echo "✅ Ingestion restarted"
         else
@@ -42,6 +45,7 @@ while true; do
             git pull origin $BRANCH
         fi
     else
+        echo "$PDF_CHANGES"
         echo "✅ No updates"
     fi
 

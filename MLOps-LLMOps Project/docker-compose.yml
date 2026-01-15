@@ -20,11 +20,6 @@ services:
     container_name: chromadb
     ports:
       - "8000:8000"
-    volumes:
-      - chroma-data:/chroma/chroma
-    environment:
-      - IS_PERSISTENT=TRUE
-      - PERSIST_DIRECTORY=/chroma/chroma
     restart: unless-stopped
     healthcheck:
       test: [ "CMD", "/bin/bash", "-c", "cat < /dev/null > /dev/tcp/localhost/8000" ]
@@ -107,6 +102,5 @@ services:
         condition: service_healthy
 
 volumes:
-  chroma-data:
   sqlite-data:
   grafana-data:

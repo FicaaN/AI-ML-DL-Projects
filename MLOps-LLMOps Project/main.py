@@ -71,12 +71,13 @@ app = FastAPI()
 
 
 # Retrieve relevant document chunks from ChromaDB
-def query_chroma(user_query: str, top_k: int = 3, distance_threshold: float = 0.3):
+def query_chroma(user_query: str, top_k: int = 3, distance_threshold: float = 1.0):
     query_vector = embeddings_model.embed_documents([user_query])[0]
     results = collection.query(query_embeddings=[query_vector], n_results=top_k)
 
     retrieved_chunks = []
     for doc, dist in zip(results["documents"][0], results["distances"][0]):
+        print(f"  - Distance: {dist:.4f} {'✅' if dist < distance_threshold else '❌'}")
         if dist < distance_threshold:
             retrieved_chunks.append(doc)
 
